@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'tasks/css/style.css' %}">
+</head>
+<body>
+    <h3>Delete Task</h3>
+    <div class="container-task del">
+        <div class="task message-task">Do you want to delete '{{task}}'?</div>
+        <div class="form-block">
+            <form method="POST" action=""> {% csrf_token %}
+                <input type="submit" value="Yes">
+            </form>
+            <a href="{% url 'index' %}">No</a>
+        </div>
+    </div>
+</body>
+</html>
+
+

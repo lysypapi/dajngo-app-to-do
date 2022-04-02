@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'tasks/css/style.css' %}">
+</head>
+<body>
+        <h3>To Do List</h3>
+        <div class="container-task">
+            <form method="POST" action="/"> {% csrf_token %}
+                {{form.title}}
+                <input type="submit" value="Add Task" name="Task" class="submit-btn">
+            </form>
+            {% if tasks|length <= 0 %}
+                <div class="blank-message">Add some new task!</div>
+            {% else %}
+                {% for task in tasks %}
+                <article class="task-article">
+                    {% if task.completed == True %}
+                    <div class="task"><strike>{{task.title}}</strike></div>
+                    {% else %}
+                    <div class="task">{{task}}</div>
+                    {% endif %}
+                    <div class="btns">
+                    <a href="{% url 'update_task' task.id %}" class="update">Update</a>
+                    <a href="{% url 'delete_task' task.id %}" class="delete" id="del">Delete</a>
+                    </div>
+                </article>
+                {% endfor %}
+            {% endif %}
+        </div>
+</body>
+</html>
+

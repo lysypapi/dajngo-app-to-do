@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'tasks/css/style.css' %}">
+</head>
+<body>
+    <h3>Update Task</h3>
+    <div class="container-task update-view">
+        <div class="task message-task">Update task</div>
+        <div class="form-container">
+            <form method="post" action=""> {% csrf_token %}
+                <label for="id_title">Title</label>
+                {{form.title}}
+                <br>
+                <label for="id_completed">Completed</label>
+                {{form.completed}}
+                <br>
+                <input type="submit" value="Update" class="update form-update"/>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
